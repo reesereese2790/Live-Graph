@@ -1,0 +1,59 @@
+WRITING DJANGO APP PART 1
+
+Navigate to  C:\Users\arm20dh\OneDrive\Documents\Github\Live-Graph>
+
+Check Python Version: python --version
+
+Check Django Version: 
+python
+import django
+print(django.get_version())
+
+Create folder: mkdir djangotutorial
+
+Create project: python -m django startproject mysite djangotutorial
+(I guess I do not have to run django-admin)
+
+Apply migrations: python manage.py migrate
+
+Runserver: python manage.py runserver
+(run from the djangotutorial folder)
+(dont use for prod level, to serve site on different port, https://docs.djangoproject.com/en/5.1/ref/django-admin/#django-admin-runserver)
+
+Create Polls App: python manage.py startapp polls
+
+***Put this in polls/views folder:
+
+from django.shortcuts import render
+from django.http import HttpResponse
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")
+
+***Map the above to a URL:
+(define URL config)
+create python file polls/urls.py with the code
+
+from django.urls import path
+from . import views
+urlpatterns = [
+    path("", views.index, name="index"),
+]
+
+***Configure global URL config in mysite project to include the URL conf defined in poll.urls.
+(Add the following code to mysite/urls.py
+
+from django.contrib import admin
+from django.urls import include, path
+urlpatterns = [
+    path("polls/", include("polls.urls")),
+    path("admin/", admin.site.urls),
+]
+
+Make sure to save everything and to do the website/polls/
+-----------------------------------------------------
+WRITING DJANGO APP PART 2
+
+
+
+TODO:chart js connection
+
