@@ -53,7 +53,24 @@ Make sure to save everything and to do the website/polls/
 -----------------------------------------------------
 WRITING DJANGO APP PART 2
 
+Database configuration using SQL: SQLLite for tutorial but for real deal use PostgreSQL, for other databases consult: https://docs.djangoproject.com/en/5.1/topics/install/#database-installation
+
+Create tables in the database before we can use them: python manage.py migrate
+migrate looks at installed_apps and creates database tables according to the database settings in mysite/settings.py 
+
+Create model in polls/models.py (database layout with additional metadata):
+class Question(models.Model):
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField("date published")
 
 
-TODO:chart js connection
+class Choice(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+
+model has number of class variables each of which represents a database field, name of each field is the column name
+
+
+TODO:chart js connection, show database tables, create my own database
 

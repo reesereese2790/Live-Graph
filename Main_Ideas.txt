@@ -1,3 +1,0 @@
-1. mkdir, startproject, migrate, runserver, startapp
-2. create contents of website i.e. index which does "hello world"
-3. map index to URL via URLconfig, configure globalURL
